@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Idoia & Alejandro · Nuestra Boda</title>
-<meta name="description" content="Te invitamos a celebrar con nosotros el 18 de septiembre de 2027.">
+<meta name="description" content="Idoia y Alejandro se casan el 10 de julio de 2027 en La Vallesa de Mandor (Valencia). Te invitamos a celebrarlo con nosotros.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -70,6 +70,7 @@
   }
   .names .amp { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: .5em; padding: 0 .15em; }
   @keyframes shine { to { background-position: 200% center; } }
+  .tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.05rem, 3vw, 1.5rem); color: var(--rose); max-width: 34rem; margin: 0 auto 1rem; }
   .date { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem, 4vw, 2rem); letter-spacing: .12em; }
   .place { color: var(--muted); font-size: .85rem; letter-spacing: .2em; text-transform: uppercase; margin-top: .3rem; }
   .hero-in > * { opacity: 0; transform: translateY(24px); animation: up 1.2s cubic-bezier(.2,.8,.2,1) forwards; }
@@ -113,7 +114,7 @@
 
   /* FLIP CARDS */
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.6rem; perspective: 1200px; }
-  .flip { height: 320px; cursor: pointer; perspective: 1200px; }
+  .flip { height: 380px; cursor: pointer; perspective: 1200px; }
   .flip-in { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.2,.8,.2,1); }
   .flip.on .flip-in { transform: rotateY(180deg); }
   .face {
@@ -127,8 +128,32 @@
   .face h3 { font-family:'Cormorant Garamond',serif; font-size:1.7rem; font-weight:500; color:var(--gold); }
   .face .t { color: var(--muted); font-size: .85rem; }
   .face small { margin-top: 1rem; font-size: .62rem; letter-spacing: .25em; text-transform: uppercase; color: var(--rose); }
-  .face.back p { font-size: .9rem; color: var(--text); }
+  .face.back p { font-size: .85rem; line-height: 1.55; color: var(--text); }
   .face.back a { color: var(--gold); font-size: .75rem; letter-spacing: .15em; margin-top: .9rem; text-transform: uppercase; }
+
+  /* FOTOS */
+  .event img { display:block; width:100%; max-width:260px; aspect-ratio:3/4; object-fit:cover; margin:.9rem 0 0 auto; border-radius:14px; border:1px solid var(--line); box-shadow:0 14px 34px rgba(0,0,0,.4); }
+  .event:nth-child(even) img { margin-left:0; }
+  .gallery { columns: 3; column-gap: 1rem; margin-top: 1rem; }
+  .gallery button { display:block; width:100%; margin:0 0 1rem; padding:0; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:none; cursor:zoom-in; break-inside:avoid; transition: transform .3s, box-shadow .3s; }
+  .gallery button:hover, .gallery button:focus-visible { transform: translateY(-3px); box-shadow:0 18px 40px rgba(0,0,0,.45), 0 0 30px rgba(232,199,121,.15); outline:none; }
+  .gallery img { display:block; width:100%; height:auto; }
+  .lightbox { position:fixed; inset:0; z-index:30; display:none; align-items:center; justify-content:center; background:rgba(10,6,16,.92); padding:1rem; cursor:zoom-out; }
+  .lightbox.open { display:flex; }
+  .lightbox img { max-width:100%; max-height:100%; border-radius:12px; box-shadow:0 20px 80px rgba(0,0,0,.6); }
+  @media (max-width: 800px) { .gallery { columns: 2; column-gap:.7rem; } .gallery button { margin-bottom:.7rem; } .event img { max-width:240px; margin-left:0; } }
+
+  /* NOVIOS */
+  .couple { display:grid; grid-template-columns: 1fr 1fr; gap:1.6rem; margin-top:2rem; }
+  .couple .tilt h3 { font-family:'Great Vibes',cursive; font-weight:400; font-size:2.6rem; color:var(--gold); line-height:1.1; margin-bottom:.4rem; }
+  .couple .tilt p { color: var(--muted); font-size:.92rem; }
+  @media (max-width: 800px) { .couple { grid-template-columns: 1fr; } }
+  .note { text-align:center; color:var(--muted); font-size:.75rem; letter-spacing:.12em; margin-top:1.2rem; }
+  .contact { display:grid; gap:1.2rem; text-align:center; }
+  .contact a { color:var(--gold); text-decoration:none; font-family:'Cormorant Garamond',serif; font-size:1.5rem; }
+  .contact b { display:block; font-weight:600; letter-spacing:.15em; text-transform:uppercase; font-size:.78rem; color:var(--text); }
+  .contact p { color:var(--muted); font-size:.9rem; }
+  .only-bus { display:none; }
 
   /* PROGRAMA */
   .tilt { border:1px solid var(--line); border-radius:20px; background:var(--card); backdrop-filter:blur(10px); padding:2rem; transition: transform .15s ease-out, box-shadow .3s; transform-style:preserve-3d; will-change:transform; }
@@ -147,7 +172,7 @@
     .timeline::before { left: 12px; }
     .event, .event:nth-child(even) { width:100%; margin-left:0; padding: 0 0 2.2rem 2.4rem; text-align:left; }
     .event::after, .event:nth-child(even)::after { left: 3px; right:auto; }
-    .flip { height: 290px; }
+    .flip { height: 360px; }
   }
   label { display:block; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin: 1rem 0 .35rem; }
   input, select, textarea {
@@ -163,10 +188,6 @@
   .thanks { text-align:center; padding: 2rem 0; display:none; }
   .thanks h3 { font-family:'Great Vibes',cursive; font-size:3rem; color:var(--gold); font-weight:400; }
 
-  .wishes { display:grid; gap:.8rem; margin-top:1rem; max-height: 420px; overflow:auto; padding-right:.3rem; }
-  .wish { background: rgba(255,255,255,.05); border-left: 2px solid var(--rose); border-radius: 0 12px 12px 0; padding:.8rem 1rem; animation: up .6s both; }
-  .wish b { color: var(--gold); font-weight:600; font-size:.8rem; letter-spacing:.1em; }
-  .wish p { font-size:.9rem; color: var(--text); }
   .empty { color: var(--muted); font-size:.85rem; font-style:italic; }
 
   footer { text-align:center; padding: 4rem 1rem 5rem; }
@@ -191,7 +212,7 @@
   <a href="#detalles">Detalles</a>
   <a href="#programa">Programa</a>
   <a href="#confirmar">Confirmar</a>
-  <a href="#deseos">Deseos</a>
+  <a href="#contacto">Contacto</a>
 </nav>
 
 <main>
@@ -200,8 +221,9 @@
     <div class="hero-in">
       <div class="pre">¡Nos casamos!</div>
       <h1 class="names">Idoia <span class="amp">&</span> Alejandro</h1>
-      <div class="date">18 · Septiembre · 2027</div>
-      <div class="place">Finca Los Olivos · Toledo</div>
+      <div class="tagline">De querernos de lejos, a querernos de cerca siempre</div>
+      <div class="date">10 · Julio · 2027</div>
+      <div class="place">La Vallesa de Mandor · Riba-roja de Túria</div>
       <div>
         <div class="countdown" id="countdown" aria-live="off">
           <div class="cd"><b id="cd-d">0</b><span>Días</span></div>
@@ -225,11 +247,36 @@
       <h2 class="reveal">Nuestra historia</h2>
       <p class="sub reveal">Cómo llegamos hasta aquí</p>
       <div class="timeline">
-        <div class="event reveal"><div class="when">Mayo 2018</div><h3>Nos conocemos</h3><p>Una fiesta de cumpleaños de un amigo en común, una pista de baile y una conversación que no terminó nunca.</p></div>
-        <div class="event reveal"><div class="when">Octubre 2019</div><h3>Primer viaje juntos</h3><p>Lisboa, tranvías y pastelitos de nata. Ahí supimos que viajar juntos era lo nuestro.</p></div>
-        <div class="event reveal"><div class="when">Marzo 2021</div><h3>Nos mudamos</h3><p>Dos maletas, una planta que sobrevivió y mucho amor en un piso pequeñito.</p></div>
-        <div class="event reveal"><div class="when">Agosto 2025</div><h3>¡Me lo pidió!</h3><p>Al atardecer, en la playa donde todo empezó a sentirse de verdad. Dije que sí antes de que terminara la pregunta.</p></div>
-        <div class="event reveal"><div class="when">Sept. 2027</div><h3>El gran día</h3><p>Y ahora queremos celebrarlo contigo. Gracias por ser parte de nuestra historia.</p></div>
+        <div class="event reveal"><div class="when">22 julio 2015</div><h3>Nos conocemos</h3><p>Con 17 años, en Castelldefels. Alejandro pasaba unos días en casa de Marcos, primo de Idoia y uno de sus mejores amigos. Ese verano nos cruzamos por primera vez.</p></div>
+        <div class="event reveal"><div class="when">22 julio 2015</div><h3>El banquito</h3><p>Nos encontramos por casualidad en el paseo marítimo, cada uno por su lado, y nos sentamos en un banquito de cara al mar. Hablamos durante horas, como si nos conociéramos de siempre. Ese fue nuestro flechazo.</p></div>
+        <div class="event reveal"><div class="when">28 diciembre 2015</div><h3>El primer beso</h3><p>Tras meses de Skype y conversaciones a todas horas, Idoia pasó un día en Zaragoza para volver a vernos. Allí llegó el primer beso y la decisión de empezar una relación a distancia Múnich–Barcelona.</p></div>
+        <div class="event reveal"><div class="when">Primer verano</div><h3>Nuestras escapadas</h3><p>Salou fue la primera. Pero para nosotros la de verdad fue París: el regalo de Alejandro por el primer cumpleaños que pasamos juntos.</p></div>
+        <div class="event reveal"><div class="when">Verano 2023</div><h3>Se acaba la distancia</h3><p>Tras casi 8 años entre Múnich, Barcelona, Valencia, París y Chicago, Idoia se mudó a Valencia. El primer año, en pisos distintos.</p></div>
+        <div class="event reveal"><div class="when">Junio 2024</div><h3>Nuestro hogar</h3><p>Conseguimos nuestro primer pisito y construimos nuestro hogar juntos. Empezaron los mejores años de nuestra relación: todo con lo que habíamos soñado estaba ocurriendo.</p></div>
+        <div class="event reveal"><div class="when">Antes de Torino</div><h3>¡Me lo pidió!</h3><p>En plena mudanza a Italia, Alejandro nos escapó un par de días a la montaña. Preparó una gincana con 9 cartas por todo el hotel, una por cada etapa de nuestra historia. En la última, a la luz de la luna y las estrellas, se arrodilló. Idoia dijo que sí.</p><img src="fotos/foto6.jpg" alt="Idoia y Alejandro el día de la pedida, enseñando el anillo" loading="lazy"></div>
+        <div class="event reveal"><div class="when">10 julio 2027</div><h3>El gran día</h3><p>Y ahora queremos celebrarlo contigo. Gracias por ser parte de nuestra historia.</p></div>
+      </div>
+      <div class="couple">
+        <div class="tilt reveal"><h3>Alejandro</h3><p>Honesto, fiel y cariñoso. Se preocupa por los suyos e intenta dar siempre lo mejor de sí a quienes quiere. Es muy curioso y siempre tiene ganas de aprender algo nuevo: eso se contagia y te enriquece cada día.</p></div>
+        <div class="tilt reveal"><h3>Idoia</h3><p>Atenta, muy emocional y familiar. Siempre quiere pasar más tiempo con su gente, y nunca le parece suficiente lo que da a quienes quiere. Exigente, sobre todo consigo misma, y fiel a sus principios: no quiere defraudar ni a los suyos ni a sí misma.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOTOS -->
+  <section id="fotos">
+    <div class="wrap">
+      <h2 class="reveal">Nosotros</h2>
+      <p class="sub reveal">Algunos momentos por el camino</p>
+      <div class="gallery">
+        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto5.jpg" alt="Idoia y Alejandro paseando por Sevilla" loading="lazy"></button>
+        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto3.jpg" alt="Idoia y Alejandro abrazados junto al mar" loading="lazy"></button>
+        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto2.jpg" alt="Idoia y Alejandro abrazados en una foto analógica" loading="lazy"></button>
+        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto4.jpg" alt="Idoia y Alejandro con el anillo ante un castillo en Torino" loading="lazy"></button>
+        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto9.jpg" alt="Idoia y Alejandro de excursión en la montaña" loading="lazy"></button>
+        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto1.jpg" alt="Idoia y Alejandro charlando en una plaza de Valencia" loading="lazy"></button>
+        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto8.jpg" alt="Idoia y Alejandro bailando" loading="lazy"></button>
+        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto7.jpg" alt="Idoia besando a Alejandro en la mejilla" loading="lazy"></button>
       </div>
     </div>
   </section>
@@ -240,28 +287,40 @@
       <h2 class="reveal">Detalles del día</h2>
       <p class="sub reveal">Toca las tarjetas para darles la vuelta</p>
       <div class="grid">
-        <div class="flip reveal" tabindex="0" role="button" aria-label="Ceremonia">
+        <div class="flip reveal" tabindex="0" role="button" aria-label="Ceremonia y fiesta">
           <div class="flip-in">
-            <div class="face"><div class="ico">⛪</div><h3>Ceremonia</h3><div class="t">18:00 h</div><small>Girar ↻</small></div>
-            <div class="face back"><p><b>Ermita de San Miguel</b><br>Camino de los Olivos s/n, Toledo.<br>Por favor, llega 15 minutos antes.</p><a href="https://maps.google.com/?q=Toledo" target="_blank" rel="noopener">Ver mapa →</a></div>
+            <div class="face"><div class="ico">💍</div><h3>Ceremonia y fiesta</h3><div class="t">18:30 h</div><small>Girar ↻</small></div>
+            <div class="face back"><p><b>La Vallesa de Mandor</b><br>Ctra. San Antonio–Ribarroja, km 4,7<br>46190 Riba-roja de Túria, Valencia.<br>Ceremonia, cóctel, cena y baile en el mismo lugar. Hay aparcamiento.</p><a href="https://maps.app.goo.gl/NP1rLzx4GsMfaiD57?g_st=ic" target="_blank" rel="noopener">Ver mapa →</a></div>
           </div>
         </div>
-        <div class="flip reveal" tabindex="0" role="button" aria-label="Banquete">
+        <div class="flip reveal" tabindex="0" role="button" aria-label="Autobuses">
           <div class="flip-in">
-            <div class="face"><div class="ico">🥂</div><h3>Banquete</h3><div class="t">20:00 h</div><small>Girar ↻</small></div>
-            <div class="face back"><p><b>Finca Los Olivos</b><br>Cóctel en el jardín, cena bajo las estrellas y baile hasta que el cuerpo aguante.</p><a href="https://maps.google.com/?q=Toledo" target="_blank" rel="noopener">Ver mapa →</a></div>
+            <div class="face"><div class="ico">🚌</div><h3>Autobuses</h3><div class="t">Desde Valencia</div><small>Girar ↻</small></div>
+            <div class="face back"><p>Habrá autobuses de ida y vuelta desde Valencia centro. Todavía estamos cerrando el punto y la hora de salida: te avisaremos.<br>Vuelta: aprox. a la 1:30 h y a las 5:00 h.</p></div>
           </div>
         </div>
         <div class="flip reveal" tabindex="0" role="button" aria-label="Vestimenta">
           <div class="flip-in">
-            <div class="face"><div class="ico">👗</div><h3>Vestimenta</h3><div class="t">Elegante</div><small>Girar ↻</small></div>
-            <div class="face back"><p><b>Traje o vestido largo/midi</b><br>Os pedimos evitar el blanco y el marfil. Paleta sugerida: burdeos, dorado, verde oliva. Zapato cómodo: hay jardín.</p></div>
+            <div class="face"><div class="ico">👗</div><h3>Vestimenta</h3><div class="t">Libre</div><small>Girar ↻</small></div>
+            <div class="face back"><p><b>No hay código.</b><br>Ven guapísimo/a y como te sientas más a gusto, tú mismo/a. Lo único: el blanco os lo dejamos a nosotros 😉</p></div>
+          </div>
+        </div>
+        <div class="flip reveal" tabindex="0" role="button" aria-label="Niños y menús">
+          <div class="flip-in">
+            <div class="face"><div class="ico">🍽️</div><h3>Niños y menús</h3><div class="t">Todos invitados</div><small>Girar ↻</small></div>
+            <div class="face back"><p>Los niños y niñas están más que invitados y tendrán menú infantil. También habrá menú vegetariano y adaptado a cualquier intolerancia (gluten y otras alergias).<br>Cada invitación es personal: no hay +1 abierto.</p></div>
+          </div>
+        </div>
+        <div class="flip reveal" tabindex="0" role="button" aria-label="Preboda">
+          <div class="flip-in">
+            <div class="face"><div class="ico">🍹</div><h3>Preboda</h3><div class="t">Vie 9 julio · ~18 h</div><small>Girar ↻</small></div>
+            <div class="face back"><p>En un chiringuito de la <b>Playa de la Patacona</b> (aún por decidir cuál), de 18 a 19 h aprox. Un encuentro casual y divertido para conocernos todos antes del gran día.</p></div>
           </div>
         </div>
         <div class="flip reveal" tabindex="0" role="button" aria-label="Regalo">
           <div class="flip-in">
-            <div class="face"><div class="ico">🎁</div><h3>Regalo</h3><div class="t">Vuestra presencia</div><small>Girar ↻</small></div>
-            <div class="face back"><p>Vuestra compañía es nuestro mejor regalo. Si queréis tener un detalle, tendremos una huchita para nuestra luna de miel en Japón 🇯🇵</p></div>
+            <div class="face"><div class="ico">🎁</div><h3>Regalo</h3><div class="t">Compartir</div><small>Girar ↻</small></div>
+            <div class="face back"><p>Nuestro mayor regalo es compartirlo con nuestra gente: que estéis en este gran día y lo disfrutemos todos juntos.<br>Si además queréis colaborar en esta maravillosa aventura, os dejamos la manera de hacerlo: <b>número de cuenta muy pronto</b>.</p></div>
           </div>
         </div>
       </div>
@@ -272,17 +331,19 @@
   <section id="programa">
     <div class="wrap" style="max-width:720px">
       <h2 class="reveal">Programa</h2>
-      <p class="sub reveal">Sábado, 18 de septiembre</p>
+      <p class="sub reveal">Sábado, 10 de julio · horarios aproximados</p>
       <div class="tilt reveal">
         <div class="prog">
-          <div class="row"><div class="h">17:30</div><div class="d"><b>Llegada de invitados</b><span>Bienvenida con agua fresca y abanicos.</span></div></div>
-          <div class="row"><div class="h">18:00</div><div class="d"><b>Ceremonia</b><span>El momento del "sí, quiero".</span></div></div>
-          <div class="row"><div class="h">19:00</div><div class="d"><b>Fotos y cóctel</b><span>Aperitivos, música en directo y brindis.</span></div></div>
-          <div class="row"><div class="h">20:30</div><div class="d"><b>Banquete</b><span>Cena servida y discursos (cortitos, prometido).</span></div></div>
-          <div class="row"><div class="h">22:30</div><div class="d"><b>Primer baile</b><span>Y después, ¡fiesta!</span></div></div>
-          <div class="row"><div class="h">03:00</div><div class="d"><b>Chocolate con churros</b><span>Para los valientes que sigan en pie.</span></div></div>
+          <div class="row"><div class="h">18:00</div><div class="d"><b>Llegada de invitados</b><span>Bienvenidos, ¡sed puntuales!</span></div></div>
+          <div class="row"><div class="h">18:30</div><div class="d"><b>Ceremonia</b><span>El momento del “sí, quiero”.</span></div></div>
+          <div class="row"><div class="h">19:30</div><div class="d"><b>Cóctel</b><span>Aperitivos y brindis.</span></div></div>
+          <div class="row"><div class="h">21:00</div><div class="d"><b>Cena</b><span>A la mesa.</span></div></div>
+          <div class="row"><div class="h">00:00</div><div class="d"><b>Baile</b><span>¡A la pista!</span></div></div>
+          <div class="row"><div class="h">01:30</div><div class="d"><b>Primer autobús</b><span>Vuelta a Valencia.</span></div></div>
+          <div class="row"><div class="h">05:00</div><div class="d"><b>Último autobús y fin de fiesta</b><span>Hasta que el cuerpo aguante.</span></div></div>
         </div>
       </div>
+      <p class="note">Horarios aproximados: pendientes de confirmar con la finca.</p>
     </div>
   </section>
 
@@ -290,23 +351,32 @@
   <section id="confirmar">
     <div class="wrap" style="max-width:640px">
       <h2 class="reveal">¿Vienes?</h2>
-      <p class="sub reveal">Confirma antes del 1 de julio de 2027</p>
+      <p class="sub reveal">Confirma antes del 10 de junio de 2027</p>
       <div class="tilt reveal">
         <form id="rsvp" autocomplete="off">
-          <label for="nombre">Tu nombre</label>
-          <input id="nombre" required maxlength="60" placeholder="Nombre y apellidos">
+          <label for="nombre">Nombre completo</label>
+          <input id="nombre" required maxlength="80" placeholder="Nombre y apellidos">
           <label>¿Podrás venir?</label>
           <div class="toggle" id="asiste">
             <button type="button" data-v="si" class="sel">¡Allí estaré! 🎉</button>
             <button type="button" data-v="no">No puedo 😢</button>
           </div>
           <div id="extra">
-            <label for="num">Número de asistentes</label>
-            <select id="num"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
             <label for="menu">Menú</label>
-            <select id="menu"><option>Tradicional</option><option>Vegetariano</option><option>Vegano</option><option>Sin gluten</option><option>Infantil</option></select>
-            <label for="alerg">Alergias o comentarios</label>
-            <textarea id="alerg" maxlength="300" placeholder="Cuéntanos lo que necesites"></textarea>
+            <select id="menu"><option>Estándar</option><option>Vegetariano</option><option>Sin gluten</option><option>Infantil</option></select>
+            <label for="alerg">Otras alergias o intolerancias</label>
+            <input id="alerg" maxlength="200" placeholder="Si no tienes ninguna, déjalo en blanco">
+            <label>¿Cogerás el autobús desde Valencia?</label>
+            <div class="toggle" id="bus">
+              <button type="button" data-v="si">Sí</button>
+              <button type="button" data-v="no" class="sel">No</button>
+            </div>
+            <div id="vuelta-wrap" class="only-bus">
+              <label for="vuelta">Autobús de vuelta</label>
+              <select id="vuelta"><option>1:30 h (aprox.)</option><option>5:00 h (aprox.)</option></select>
+            </div>
+            <label for="cancion">¿Qué canción no puede faltar para que lo des todo?</label>
+            <input id="cancion" maxlength="120" placeholder="La que te obliga a dejar la copa e ir directo a la pista 😉">
           </div>
           <div style="text-align:center;margin-top:1.6rem"><button class="btn" type="submit">Enviar confirmación</button></div>
         </form>
@@ -318,29 +388,29 @@
     </div>
   </section>
 
-  <!-- DESEOS -->
-  <section id="deseos">
-    <div class="wrap" style="max-width:760px">
-      <h2 class="reveal">Libro de deseos</h2>
-      <p class="sub reveal">Déjanos unas palabras bonitas</p>
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="wrap" style="max-width:640px">
+      <h2 class="reveal">¿Dudas?</h2>
+      <p class="sub reveal">Escríbenos o llámanos</p>
       <div class="tilt reveal">
-        <form id="wish-form" autocomplete="off">
-          <label for="w-name">Tu nombre</label>
-          <input id="w-name" required maxlength="40" placeholder="¿Quién eres?">
-          <label for="w-msg">Tu mensaje</label>
-          <textarea id="w-msg" required maxlength="220" placeholder="Os deseo muchísima felicidad…"></textarea>
-          <div style="text-align:center;margin-top:1.2rem"><button class="btn" type="submit">Enviar un deseo ♥</button></div>
-        </form>
-        <div class="wishes" id="wishes"></div>
+        <div class="contact">
+          <div><b>Idoia</b><a href="tel:+34633369366">+34 633 36 93 66</a></div>
+          <div><b>Alejandro</b><a href="tel:+34644390326">+34 644 39 03 26</a></div>
+          <p>También puedes preguntar a nuestros hermanos, Sergio y Miguel.</p>
+        </div>
       </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="names">L <span class="amp">&</span> A</div>
-  <p>18 · 09 · 2027 — Os esperamos con los brazos abiertos</p>
+  <div class="names">I <span class="amp">&</span> A</div>
+  <p>10 · 07 · 2027 — #2222</p>
+  <p style="margin-top:.4rem">Os esperamos con los brazos abiertos</p>
 </footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Foto ampliada"><img alt=""></div>
 
 <div class="toast" id="toast" role="status"></div>
 
@@ -461,7 +531,7 @@
       const p = toWorld(e.clientX, e.clientY, 3.5); cursorLight.position.set(p.x, p.y, 3.5);
     }, { passive: true });
     addEventListener('pointerdown', e => {
-      if (e.target.closest('input,textarea,select,.btn,a,.flip')) return;
+      if (e.target.closest('input,textarea,select,.btn,a,.flip,.gallery,.lightbox')) return;
       ndc.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
       ray.setFromCamera(ndc, camera);
       const hit = ray.intersectObjects([r1, r2, gem])[0];
@@ -546,7 +616,7 @@
   });
 
   /* ================= COUNTDOWN ================= */
-  const target = new Date('2027-09-18T18:00:00+02:00').getTime();
+  const target = new Date('2027-07-10T18:30:00+02:00').getTime();
   const pad = n => String(n).padStart(2, '0');
   function tick() {
     let d = Math.max(0, target - Date.now());
@@ -562,6 +632,12 @@
     if (e.isIntersecting) { e.target.style.transitionDelay = (e.target.dataset.d || 0) + 'ms'; e.target.classList.add('in'); io.unobserve(e.target); }
   }), { threshold: .15 });
   $$('.reveal').forEach((el, i) => { el.dataset.d = (i % 4) * 90; io.observe(el); });
+
+  /* ================= LIGHTBOX ================= */
+  const lb = $('#lightbox'), lbImg = $('img', lb);
+  $$('.gallery button').forEach(b => b.addEventListener('click', () => { const im = $('img', b); lbImg.src = im.src; lbImg.alt = im.alt; lb.classList.add('open'); }));
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+  addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
 
   /* ================= FLIP CARDS ================= */
   $$('.flip').forEach(c => {
@@ -582,40 +658,38 @@
   }
 
   /* ================= RSVP ================= */
-  let asiste = 'si';
-  $$('#asiste button').forEach(b => b.addEventListener('click', () => {
-    $$('#asiste button').forEach(x => x.classList.remove('sel')); b.classList.add('sel');
-    asiste = b.dataset.v; $('#extra').style.display = asiste === 'si' ? '' : 'none';
-  }));
-  $('#rsvp').addEventListener('submit', e => {
+  // Pega aquí la URL de la app web de Google Apps Script (ver boda/apps-script.gs).
+  const RSVP_ENDPOINT = '';
+  const choice = { asiste: 'si', bus: 'no' };
+  const syncBus = () => { $('#vuelta-wrap').style.display = choice.bus === 'si' ? 'block' : 'none'; };
+  [['#asiste','asiste'],['#bus','bus']].forEach(([sel, key]) => $$(sel + ' button').forEach(b => b.addEventListener('click', () => {
+    $$(sel + ' button').forEach(x => x.classList.remove('sel')); b.classList.add('sel');
+    choice[key] = b.dataset.v;
+    $('#extra').style.display = choice.asiste === 'si' ? '' : 'none';
+    syncBus();
+  })));
+  $('#rsvp').addEventListener('submit', async e => {
     e.preventDefault();
     const name = $('#nombre').value.trim(); if (!name) return;
-    const list = store.get('boda-rsvp', []);
-    list.push({ name, asiste, num: $('#num').value, menu: $('#menu').value, nota: $('#alerg').value.trim(), ts: Date.now() });
-    store.set('boda-rsvp', list);
+    const yes = choice.asiste === 'si';
+    const data = {
+      nombre: name, asiste: yes ? 'Sí' : 'No',
+      menu: yes ? $('#menu').value : '', alergias: yes ? $('#alerg').value.trim() : '',
+      bus: yes ? (choice.bus === 'si' ? 'Sí' : 'No') : '',
+      vuelta: yes && choice.bus === 'si' ? $('#vuelta').value : '',
+      cancion: yes ? $('#cancion').value.trim() : '',
+    };
+    const list = store.get('boda-rsvp', []); list.push({ ...data, ts: Date.now() }); store.set('boda-rsvp', list);
+    const btn = e.submitter; if (btn) btn.disabled = true;
+    if (RSVP_ENDPOINT) {
+      try { await fetch(RSVP_ENDPOINT, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(data) }); }
+      catch { if (btn) btn.disabled = false; toast('No hemos podido enviarlo. Inténtalo de nuevo o escríbenos 🙏'); return; }
+    } else console.warn('RSVP_ENDPOINT no configurado: la respuesta solo se ha guardado en este navegador.');
     $('#rsvp').style.display = 'none';
     $('#thanks').style.display = 'block';
     $('#thanks-name').textContent = name.split(' ')[0];
-    $('#thanks-msg').textContent = asiste === 'si' ? '¡Qué ilusión! Ya tenemos tu sitio reservado. Nos vemos en septiembre 💛' : 'Te echaremos mucho de menos, pero gracias por avisarnos. ¡Un abrazo enorme!';
-    if (asiste === 'si') { for (let i = 0; i < 5; i++) setTimeout(() => burst((Math.random() - .5) * 8, (Math.random() - .5) * 4, 0, 70), i * 140); ringsSpin(); }
-  });
-
-  /* ================= LIBRO DE DESEOS ================= */
-  const seed = [
-    { n: 'Abuela Carmen', m: 'Mis niños preciosos, qué felicidad veros juntos. ¡Os quiero con toda mi alma!' },
-    { n: 'Marta y Dani', m: '¡Por fin! Ya tenemos el vestido listo y las ganas de bailar a tope 💃' },
-  ];
-  function renderWishes() {
-    const all = [...store.get('boda-deseos', []), ...seed];
-    $('#wishes').innerHTML = all.map(w => `<div class="wish"><b>${esc(w.n)}</b><p>${esc(w.m)}</p></div>`).join('') || '<div class="empty">Sé el primero en escribir.</div>';
-  }
-  renderWishes();
-  $('#wish-form').addEventListener('submit', e => {
-    e.preventDefault();
-    const n = $('#w-name').value.trim(), m = $('#w-msg').value.trim(); if (!n || !m) return;
-    const l = store.get('boda-deseos', []); l.unshift({ n, m }); store.set('boda-deseos', l);
-    renderWishes(); e.target.reset(); toast('¡Gracias por tus palabras! 💌');
-    for (let i = 0; i < 3; i++) setTimeout(() => burst((Math.random() - .5) * 8, (Math.random() - .5) * 4, 0, 50), i * 120);
+    $('#thanks-msg').textContent = yes ? '¡Qué ilusión! Ya tenemos tu sitio reservado. Nos vemos el 10 de julio 💛' : 'Te echaremos mucho de menos, pero gracias por avisarnos. ¡Un abrazo enorme!';
+    if (yes) { for (let i = 0; i < 5; i++) setTimeout(() => burst((Math.random() - .5) * 8, (Math.random() - .5) * 4, 0, 70), i * 140); ringsSpin(); }
   });
 })();
 </script>
