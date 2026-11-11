@@ -437,26 +437,67 @@
       '<rect x="146" y="318" width="108" height="6" fill="#6b4a36"/><rect x="150" y="322" width="4" height="30" fill="#6b4a36"/><rect x="246" y="322" width="4" height="30" fill="#6b4a36"/>' +
       boy(182, 372, .95, '#7d8f66') + girl(220, 372, .95, '#c98b6b') +
       '<rect x="146" y="350" width="108" height="8" rx="2" fill="#7c5a43"/><rect x="150" y="358" width="4" height="26" fill="#6b4a36"/><rect x="246" y="358" width="4" height="26" fill="#6b4a36"/>',
-    // 3 · Zaragoza, primer beso
-    () => grad('s3', '#2f3b5c', '#7a7aa0') + stars(18, 200) +
-      '<g fill="#2b3252"><rect x="60" y="250" width="280" height="110"/><rect x="48" y="180" width="18" height="90"/><rect x="334" y="180" width="18" height="90"/><rect x="100" y="200" width="16" height="60"/><rect x="284" y="200" width="16" height="60"/></g>' +
-      '<g fill="#5a9aa8"><ellipse cx="108" cy="198" rx="14" ry="14"/><ellipse cx="292" cy="198" rx="14" ry="14"/><ellipse cx="57" cy="178" rx="12" ry="12"/><ellipse cx="343" cy="178" rx="12" ry="12"/><ellipse cx="200" cy="232" rx="52" ry="40"/><ellipse cx="150" cy="240" rx="26" ry="24"/><ellipse cx="250" cy="240" rx="26" ry="24"/></g>' +
-      '<g fill="#e5c27a"><rect x="197" y="186" width="6" height="14"/><circle cx="200" cy="184" r="4"/></g>' +
-      '<g fill="#e5c27a" opacity=".85"><rect x="90" y="290" width="8" height="12"/><rect x="130" y="290" width="8" height="12"/><rect x="262" y="290" width="8" height="12"/><rect x="302" y="290" width="8" height="12"/></g>' +
-      '<rect y="360" width="400" height="80" fill="#e8ecf2"/>' +
-      '<circle cx="200" cy="345" r="70" fill="#f6d98f" opacity=".18"/><rect x="198" y="300" width="4" height="100" fill="#2b3252"/><circle cx="200" cy="298" r="8" fill="#fbe3a6"/>' +
-      boy(184, 412, 1.1, '#7d8f66') + girl(218, 412, 1.1, '#c98b6b') +
-      Array.from({ length: 28 }, (_, i) => `<circle cx="${(i * 73 + 11) % 400}" cy="${(i * 131 + 7) % 360}" r="${i % 3 ? 1.6 : 2.6}" fill="#fff" opacity=".85"/>`).join(''),
-    // 4 · Escapadas / París
-    () => grad('s4', '#f3d3cb', '#fbefe3') +
-      '<path d="M30 190 Q200 10 370 190" stroke="#c98b6b" stroke-dasharray="3 7" stroke-width="2" fill="none"/>' +
-      '<g transform="translate(307 100) rotate(40)" fill="#fff" stroke="#c98b6b" stroke-width="1.5"><path d="M-14 0 L14 0 L22 -3 L14 -6 L-14 -6 L-18 -12 L-22 -12 L-18 -3Z"/></g>' +
-      '<g fill="#fff" opacity=".8"><ellipse cx="85" cy="250" rx="40" ry="11"/><ellipse cx="320" cy="270" rx="34" ry="10"/></g>' +
-      '<path d="M200 70 L210 170 L236 330 L216 330 Q200 292 184 330 L164 330 L190 170 Z" fill="#6b5b73"/>' +
-      '<g stroke="#fbefe3" stroke-width="2"><path d="M192 172h16M185 215h30M178 262h44"/></g><rect x="188" y="168" width="24" height="5" fill="#4f4259"/><rect x="176" y="250" width="48" height="6" fill="#4f4259"/>' +
-      '<rect y="330" width="400" height="110" fill="#cfd9b8"/><path d="M0 345H400" stroke="#b9c79c" stroke-width="3"/>' +
-      boy(150, 405, 1.1, '#7d8f66') + girl(250, 405, 1.1, '#c98b6b') +
-      '<rect x="276" y="383" width="22" height="18" rx="3" fill="#a8744f"/><rect x="283" y="379" width="8" height="5" rx="2" fill="none" stroke="#6b4a36" stroke-width="1.5"/>',
+    // 3 · Zaragoza, primer beso (Basílica del Pilar, Puente de Piedra y el Ebro)
+    () => {
+      const tower = (x, top, w, spire) => `<g><rect x="${x - w / 2}" y="${top + 45}" width="${w}" height="${280 - top - 45}" fill="#d6a45c"/><rect x="${x}" y="${top + 45}" width="${w / 2}" height="${280 - top - 45}" fill="#7a4f25" opacity=".22"/><rect x="${x - w / 2 - 2}" y="${top + 42}" width="${w + 4}" height="5" fill="#b9843f"/><rect x="${x - w / 2 + 2}" y="${top + 16}" width="${w - 4}" height="28" fill="#e6b872"/><rect x="${x - 3}" y="${top + 22}" width="6" height="16" rx="3" fill="#3a2a22"/><path d="M${x - w / 2 + 2} ${top + 16} Q${x - 3} ${top + 8} ${x} ${top - 10} Q${x + 3} ${top + 8} ${x + w / 2 - 2} ${top + 16}Z" fill="${spire}"/><circle cx="${x}" cy="${top - 11}" r="2.2" fill="${spire}"/><rect x="${x - 2.5}" y="${top + 62}" width="5" height="18" rx="2.5" fill="#3a2a22"/><rect x="${x - 2.5}" y="${top + 98}" width="5" height="18" rx="2.5" fill="#3a2a22"/><rect x="${x - 2.5}" y="${top + 134}" width="5" height="16" rx="2.5" fill="#3a2a22" opacity=".8"/></g>`;
+      const dome = (x, y, r, sp = 18) => `<g><path d="M${x - r} ${y} A${r} ${r * .9} 0 0 1 ${x + r} ${y}Z" fill="#e0cf9a"/><path d="M${x - r * .78} ${y} A${r * .78} ${r * .7} 0 0 1 ${x + r * .78} ${y}" fill="none" stroke="#3f7f9a" stroke-width="5" stroke-dasharray="5 5"/><path d="M${x - r * .45} ${y} A${r * .45} ${r * .45} 0 0 1 ${x + r * .45} ${y}" fill="none" stroke="#3f7f9a" stroke-width="4" stroke-dasharray="4 4"/><rect x="${x - 2.5}" y="${y - r * .9 - 8}" width="5" height="8" fill="#d6a45c"/><path d="M${x - 2.5} ${y - r * .9 - 8} L${x} ${y - r * .9 - 8 - sp} L${x + 2.5} ${y - r * .9 - 8}Z" fill="#1e2538"/></g>`;
+      const lamps = [30, 92, 150, 205, 262, 318, 372].map(x => `<rect x="${x - 1}" y="266" width="2" height="12" fill="#2a2230"/><circle cx="${x}" cy="264" r="9" fill="#ffd27a" opacity=".28"/><circle cx="${x}" cy="264" r="3" fill="#ffe3a0"/>`).join('');
+      const arches = [58, 170, 290, 396].map(c => `<path d="M${c - 46} 340 V320 A46 40 0 0 1 ${c + 46} 320 V340Z" fill="#28365a"/><path d="M${c - 46} 340 V320 A46 40 0 0 1 ${c + 46} 320" fill="none" stroke="#f0a34a" stroke-width="4" opacity=".9"/><path d="M${c - 38} 340 V322 A38 33 0 0 1 ${c + 38} 322" fill="none" stroke="#c9732f" stroke-width="3" opacity=".6"/>`).join('');
+      const refl = [30, 62, 98, 138, 172, 206, 244, 280, 318, 356].map((x, i) => `<rect x="${x}" y="${346 + (i % 3) * 4}" width="${4 + (i % 2) * 3}" height="${40 + (i % 4) * 8}" rx="2" fill="#f0a34a" opacity="${.55 + (i % 3) * .12}"/>`).join('');
+      return `<defs><linearGradient id="s3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22306a"/><stop offset=".5" stop-color="#4a5a9c"/><stop offset=".68" stop-color="#e9b865"/></linearGradient><radialGradient id="s3g" cx="1" cy=".62" r=".6"><stop offset="0" stop-color="#f8d682" stop-opacity=".85"/><stop offset="1" stop-color="#f8d682" stop-opacity="0"/></radialGradient><linearGradient id="s3r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#35487f"/><stop offset="1" stop-color="#1b2850"/></linearGradient></defs>` +
+        '<rect width="400" height="440" fill="url(#s3)"/><rect width="400" height="440" fill="url(#s3g)"/>' +
+        '<path d="M250 0 H400 V120 Q350 150 330 100 Q300 60 250 40Z" fill="#1d3a5e" opacity=".55"/>' + stars(10, 90, '#dfe6ff') +
+        // edificios a la izquierda y nave
+        '<path d="M0 238 L95 232 V282 H0Z" fill="#b8864a"/><path d="M0 232 L95 226 V234 L0 240Z" fill="#3a3a4d"/>' +
+        '<g fill="#ffd27a" opacity=".85"><rect x="12" y="248" width="5" height="7"/><rect x="30" y="248" width="5" height="7"/><rect x="48" y="248" width="5" height="7"/><rect x="66" y="248" width="5" height="7"/><rect x="84" y="248" width="5" height="7"/></g>' +
+        '<rect x="95" y="236" width="245" height="46" fill="#c99650"/><rect x="95" y="236" width="245" height="6" fill="#a97a3e"/>' +
+        dome(135, 238, 13, 12) + dome(168, 232, 22, 20) + dome(252, 234, 17, 16) + dome(288, 238, 13, 12) + dome(120, 240, 8, 8) +
+        tower(78, 128, 26, '#2f7f78') + tower(214, 92, 32, '#1e2538') + tower(322, 140, 26, '#1e2538') + tower(246, 172, 14, '#1e2538') +
+        // puente de piedra
+        '<rect x="0" y="278" width="400" height="66" fill="#a98354"/><rect x="0" y="274" width="400" height="8" fill="#c39a63"/><g fill="#8a6540" opacity=".5"><rect x="0" y="338" width="400" height="6"/></g>' + lamps + arches +
+        // río con reflejos
+        '<rect y="344" width="400" height="96" fill="url(#s3r)"/>' + refl +
+        '<g fill="#f0a34a" opacity=".22"><rect x="68" y="350" width="16" height="70"/><rect x="206" y="350" width="18" height="70"/><rect x="314" y="350" width="16" height="70"/></g>' +
+        // orilla
+        '<path d="M0 440 V404 Q70 388 140 408 T270 402 T400 394 V440Z" fill="#2c4a36"/><g stroke="#4f7a52" stroke-width="2" stroke-linecap="round" opacity=".8"><path d="M14 440 l-3 -26 M26 440 l2 -30 M40 440 l-2 -22 M368 440 l3 -28 M384 440 l-2 -32 M352 440 l2 -22"/></g>' +
+        // farola y pareja
+        '<circle cx="312" cy="396" r="46" fill="#f6d98f" opacity=".09"/><rect x="310" y="346" width="4" height="84" fill="#2a2230"/><circle cx="312" cy="344" r="7" fill="#ffe3a0"/><ellipse cx="300" cy="432" rx="60" ry="9" fill="#f6d98f" opacity=".16"/>' +
+        boy(182, 428, 1.05, '#7d8f66') + girl(216, 428, 1.05, '#c98b6b') +
+        Array.from({ length: 24 }, (_, i) => `<circle cx="${(i * 73 + 11) % 400}" cy="${(i * 131 + 7) % 340}" r="${i % 3 ? 1.5 : 2.4}" fill="#fff" opacity=".8"/>`).join('');
+    },
+    // 4 · Escapadas / París (la torre Eiffel desde el Trocadéro)
+    () => {
+      const hwPts = [[13, 1], [44, 4], [62, 6], [110, 11], [170, 22], [227, 32], [260, 40], [290, 50], [322, 60], [358, 72]];
+      const hw = y => { for (let i = 1; i < hwPts.length; i++) { const [y0, w0] = hwPts[i - 1], [y1, w1] = hwPts[i]; if (y <= y1) return w0 + (w1 - w0) * (y - y0) / (y1 - y0); } return 72; };
+      const right = hwPts.map(([y, w]) => `${200 + w} ${y}`).join(' L');
+      const left = [...hwPts].reverse().map(([y, w]) => `${200 - w} ${y}`).join(' L');
+      const bands = [[62, 110], [110, 150], [150, 190], [190, 227], [238, 262], [262, 284], [296, 322], [322, 345]];
+      const lattice = bands.map(([a, b]) => `M${200 - hw(a)} ${a} L${200 + hw(b)} ${b} M${200 + hw(a)} ${a} L${200 - hw(b)} ${b}`).join(' ');
+      const trees = (cx, cy, n, dir) => Array.from({ length: n }, (_, i) => { const x = cx + dir * i * 16 + (i % 2) * 6, y = cy - (i % 3) * 7, r = 20 + (i % 3) * 5; return `<circle cx="${x}" cy="${y}" r="${r}" fill="${i % 2 ? '#5c7d47' : '#4b6b3b'}"/>`; }).join('');
+      const skyline = Array.from({ length: 22 }, (_, i) => `<rect x="${i * 19 - 4}" y="${322 - (i * 7 % 5) * 3}" width="14" height="${14 + (i * 7 % 5) * 3}" fill="${i % 2 ? '#e7dfd4' : '#ddd3c6'}"/>`).join('');
+      return `<defs><linearGradient id="s4" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="335"><stop offset="0" stop-color="#6a99dd"/><stop offset=".55" stop-color="#a5c0e6"/><stop offset=".85" stop-color="#e3dcd2"/><stop offset="1" stop-color="#f1dfc2"/></linearGradient><pattern id="s4p" width="30" height="18" patternUnits="userSpaceOnUse"><rect width="30" height="18" fill="#cbc2b0"/><path d="M0 .5H30M0 9.5H30M.5 0V9M15.5 9V18" stroke="#a89e89" stroke-width="1.2" fill="none"/><rect x="3" y="2" width="9" height="5" fill="#d4ccbb" opacity=".6"/><rect x="18" y="11" width="9" height="5" fill="#bdb4a1" opacity=".5"/></pattern><linearGradient id="s4h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efe6d6" stop-opacity=".75"/><stop offset="1" stop-color="#efe6d6" stop-opacity="0"/></linearGradient></defs>` +
+        '<rect width="400" height="440" fill="url(#s4)"/>' +
+        '<path d="M18 168 Q80 128 138 62" stroke="#fff" stroke-dasharray="3 7" stroke-width="2" fill="none" opacity=".9"/><g transform="translate(142 58) rotate(-52)" fill="#fff" stroke="#8aa6c8" stroke-width="1"><path d="M-12 0 L12 0 L19 -3 L12 -6 L-12 -6 L-16 -11 L-19 -11 L-15 -3Z"/></g>' +
+        skyline +
+        // árboles a los lados
+        trees(0, 322, 8, 1) + trees(400, 322, 8, -1) +
+        // plaza
+        '<rect y="338" width="400" height="102" fill="#c4bba9"/><rect x="0" y="332" width="130" height="14" fill="#cdbf9f"/><rect x="270" y="332" width="130" height="14" fill="#cdbf9f"/>' +
+        '<rect y="338" width="400" height="102" fill="url(#s4p)"/><rect y="338" width="400" height="70" fill="url(#s4h)"/>' +
+                // torre
+        `<path d="M200 13 L${right} L${left} Z" fill="#8b5e3c"/>` +
+        `<path d="M200 13 L${200 + 4} 44 L${200 + 6} 62 L${200 + 11} 110 L${200 + 22} 170 L${200 + 32} 227 L200 227Z" fill="#000" opacity=".12"/>` +
+        '<path d="M200 13 V44" stroke="#5e3b24" stroke-width="2"/>' +
+        `<path d="${lattice}" stroke="#4e3220" stroke-width="1.1" fill="none" opacity=".8"/>` +
+        '<rect x="192" y="44" width="16" height="18" fill="#7a5030"/><rect x="189" y="60" width="22" height="4" fill="#5e3b24"/>' +
+        '<rect x="164" y="226" width="72" height="5" fill="#6b4429"/><rect x="150" y="290" width="100" height="7" fill="#6b4429"/><path d="M146 288h108" stroke="#4e3220" stroke-width="2"/>' +
+        `<path d="M188 238 L212 238 L218 284 L182 284Z" fill="url(#s4)"/>` +
+        '<path d="M154 358 V342 Q200 288 246 342 V358Z" fill="#dcd2c4"/><g fill="#6b8a55"><ellipse cx="186" cy="352" rx="12" ry="7"/><ellipse cx="214" cy="353" rx="11" ry="6"/></g>' +
+        '<path d="M154 358 V342 Q200 288 246 342 V358" fill="none" stroke="#6b4429" stroke-width="5"/>' +
+'<path d="M0 392 Q40 384 90 396 L100 440 H0Z" fill="#6c8c55"/><path d="M400 392 Q360 384 330 396 L322 440 H400Z" fill="#6c8c55"/>' +
+                boy(176, 432, 1.1, '#7d8f66') + girl(216, 432, 1.1, '#c98b6b') +
+        '<rect x="240" y="414" width="22" height="18" rx="3" fill="#a8744f"/><rect x="247" y="410" width="8" height="5" rx="2" fill="none" stroke="#6b4a36" stroke-width="1.5"/>';
+    },
     // 5 · Valencia, se acaba la distancia
     () => grad('s5', '#cfe6ef', '#fff4de') +
       '<circle cx="320" cy="70" r="30" fill="#f6d98f"/>' +
@@ -499,8 +540,8 @@
   const stories = [
     { date: '22 julio 2015', title: 'Nos conocemos', text: 'Con 17 años, en Castelldefels. Alejandro pasaba unos días en casa de Marcos, primo de Idoia y uno de sus mejores amigos. Ese verano nos cruzamos por primera vez.', alt: 'Dos jóvenes caminan uno hacia el otro por el paseo marítimo de Castelldefels' },
     { date: '22 julio 2015', title: 'El banquito', text: 'Nos encontramos por casualidad en el paseo marítimo, cada uno por su lado, y nos sentamos en un banquito de cara al mar. Hablamos durante horas, como si nos conociéramos de siempre. Ese fue nuestro flechazo.', alt: 'Dos jóvenes sentados en un banco mirando el mar al atardecer' },
-    { date: '28 diciembre 2015', title: 'El primer beso', text: 'Tras meses de Skype y conversaciones a todas horas, Idoia pasó un día en Zaragoza para volver a vernos. Allí llegó el primer beso y la decisión de empezar una relación a distancia Múnich–Barcelona.', alt: 'La pareja bajo una farola en una noche de invierno en Zaragoza' },
-    { date: 'Primer verano', title: 'Nuestras escapadas', text: 'Salou fue la primera. Pero para nosotros la de verdad fue París: el regalo de Alejandro por el primer cumpleaños que pasamos juntos.', alt: 'La pareja ante la torre Eiffel, con un avión dibujando la distancia en el cielo' },
+    { date: '28 diciembre 2015', title: 'El primer beso', text: 'Tras meses de Skype y conversaciones a todas horas, Idoia pasó un día en Zaragoza para volver a vernos. Allí llegó el primer beso y la decisión de empezar una relación a distancia Múnich–Barcelona.', alt: 'La pareja junto al río Ebro, con la Basílica del Pilar y el Puente de Piedra iluminados al anochecer' },
+    { date: 'Primer verano', title: 'Nuestras escapadas', text: 'Salou fue la primera. Pero para nosotros la de verdad fue París: el regalo de Alejandro por el primer cumpleaños que pasamos juntos.', alt: 'La pareja ante la torre Eiffel vista desde el Trocadéro, con las fuentes delante y un avión en el cielo' },
     { date: 'Verano 2023', title: 'Se acaba la distancia', text: 'Tras casi 8 años entre Múnich, Barcelona, Valencia, París y Chicago, Idoia se mudó a Valencia. El primer año, en pisos distintos.', alt: 'La pareja se abraza en Valencia junto a un naranjo y el Miguelete' },
     { date: 'Junio 2024', title: 'Nuestro hogar', text: 'Conseguimos nuestro primer pisito y construimos nuestro hogar juntos. Empezaron los mejores años de nuestra relación: todo con lo que habíamos soñado estaba ocurriendo.', alt: 'La pareja con la llave de su primera casa' },
     { date: 'Antes de Torino', title: 'La pedida', text: 'En plena mudanza a Italia, nos escapamos un par de días a la montaña. Alejandro preparó una gincana con 9 cartas, una por cada etapa de nuestra historia, y en la última, a la luz de la luna y las estrellas, se arrodilló. Idoia dijo que sí.', alt: 'Alejandro arrodillado con el anillo bajo la luna y las estrellas', photo: ['fotos/foto6.jpg', 'Idoia y Alejandro el día de la pedida, enseñando el anillo'] },
