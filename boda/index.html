@@ -132,12 +132,29 @@
   .story-list .art { position: relative; inset: auto; aspect-ratio: 10/11; margin: 1rem; }
   .story-list .text-page { position: relative; padding: 0 1.6rem 2rem; }
 
-  /* FOTOS */
-  .gallery { columns: 3; column-gap: 1rem; }
-  .gallery button { display: block; width: 100%; margin: 0 0 1rem; padding: 0; border: 0; background: var(--bg2); cursor: zoom-in; break-inside: avoid; overflow: hidden; }
-  .gallery img { width: 100%; height: auto; transition: transform .6s ease, opacity .3s; }
-  .gallery button:hover img { transform: scale(1.03); }
-  @media (max-width: 700px) { .gallery { columns: 2; column-gap: .6rem; } .gallery button { margin-bottom: .6rem; } }
+  /* FOTOS · CARRETE */
+  #fotos { overflow-x: clip; }
+  .reel { --fw: min(300px, 62vw); --fh: calc(var(--fw) * 4 / 3); --step: calc(var(--fw) + 26px); position: relative; margin: 0 calc(50% - 50vw); outline-offset: -4px; }
+  .strip { position: relative; height: calc(var(--fh) + 96px); background: #2b2a27; overflow: hidden; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+  .strip::before, .strip::after { content: ''; position: absolute; left: 0; right: 0; height: 14px; z-index: 1; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='14'%3E%3Crect x='6' y='1' width='18' height='12' rx='3' fill='%23faf7f2'/%3E%3C/svg%3E"); background-repeat: repeat-x; background-position-x: var(--hx, 0px); transition: background-position-x .8s cubic-bezier(.45,.05,.2,1); }
+  .strip::before { top: 16px; }
+  .strip::after { bottom: 16px; }
+  .frame { position: absolute; top: 48px; left: 50%; width: var(--fw); height: var(--fh); margin-left: calc(var(--fw) / -2); padding: 0; border: 0; background: #111; cursor: pointer; transition: transform .8s cubic-bezier(.45,.05,.2,1), opacity .8s ease, filter .8s ease; }
+  .frame img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; -webkit-user-drag: none; }
+  .frame.is-active { cursor: zoom-in; }
+  .frame.is-far { visibility: hidden; transition: none; }
+  .reel-btn { position: absolute; top: calc((var(--fh) + 96px) / 2); transform: translateY(-50%); z-index: 5; width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,.5); background: rgba(250,247,242,.92); color: var(--ink); cursor: pointer; display: grid; place-items: center; transition: background .2s, transform .2s; }
+  .reel-btn:hover { background: #fff; transform: translateY(-50%) scale(1.06); }
+  .reel-btn svg { width: 18px; height: 18px; }
+  .reel-prev { left: max(.8rem, calc(50% - var(--fw) / 2 - 3.6rem)); }
+  .reel-next { right: max(.8rem, calc(50% - var(--fw) / 2 - 3.6rem)); }
+  .reel-meta { display: flex; align-items: center; justify-content: center; gap: 1.4rem; margin-top: 1.2rem; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+  .reel-meta button { background: none; border: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--accent-dark); cursor: pointer; border-bottom: 1px solid var(--accent); padding: 0 0 2px; }
+  .reel-bar { height: 2px; background: var(--line); margin: .9rem auto 0; width: min(300px, 70vw); overflow: hidden; }
+  .reel-bar i { display: block; height: 100%; width: 100%; background: var(--accent); transform-origin: left; transform: scaleX(0); }
+  .reel-bar i.run { animation: reelbar 5s linear forwards; }
+  @keyframes reelbar { to { transform: scaleX(1); } }
+  @media (prefers-reduced-motion: reduce) { .frame, .strip::before, .strip::after { transition-duration: .01ms !important; } }
   .lightbox { position: fixed; inset: 0; z-index: 30; display: none; align-items: center; justify-content: center; background: rgba(30,28,24,.92); padding: 1rem; cursor: zoom-out; }
   .lightbox.open { display: flex; }
   .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; }
@@ -258,15 +275,7 @@
     <div class="wrap">
       <p class="eyebrow reveal">Algunos momentos por el camino</p>
       <h2 class="reveal">Nosotros</h2>
-      <div class="gallery">
-        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto3.jpg" alt="Idoia y Alejandro abrazados junto al mar" loading="lazy"></button>
-        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto2.jpg" alt="Idoia y Alejandro abrazados en una foto analógica" loading="lazy"></button>
-        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto4.jpg" alt="Idoia y Alejandro con el anillo ante un castillo en Torino" loading="lazy"></button>
-        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto9.jpg" alt="Idoia y Alejandro de excursión en la montaña" loading="lazy"></button>
-        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto1.jpg" alt="Idoia y Alejandro charlando en una plaza de Valencia" loading="lazy"></button>
-        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto8.jpg" alt="Idoia y Alejandro bailando" loading="lazy"></button>
-        <button type="button" class="reveal" aria-label="Ampliar foto"><img src="fotos/foto7.jpg" alt="Idoia besando a Alejandro en la mejilla" loading="lazy"></button>
-      </div>
+      <div class="reel" id="reel" role="region" aria-roledescription="carrusel" aria-label="Fotos de Idoia y Alejandro"></div>
     </div>
   </section>
 
@@ -549,9 +558,88 @@
 
   /* Galería ampliada */
   const lb = $('#lightbox'), lbImg = $('img', lb);
-  $$('.gallery button').forEach(b => b.addEventListener('click', () => { const im = $('img', b); lbImg.src = im.src; lbImg.alt = im.alt; lb.classList.add('open'); }));
   lb.addEventListener('click', () => lb.classList.remove('open'));
   addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+
+  /* ================= CARRETE DE FOTOS ================= */
+  const photos = [
+    ['foto3', 'Idoia y Alejandro abrazados junto al mar'], ['foto11', 'Idoia y Alejandro abrazados en una terraza junto a un río'],
+    ['foto2', 'Idoia y Alejandro abrazados en una foto analógica'], ['foto15', 'Idoia y Alejandro besándose en una playa de arena oscura'],
+    ['foto4', 'Idoia y Alejandro con el anillo ante un castillo en Torino'], ['foto13', 'Selfie de Idoia y Alejandro con una ciudad de tejados rojos al fondo'],
+    ['foto9', 'Idoia y Alejandro de excursión en la montaña'], ['foto12', 'Idoia y Alejandro abrazados en un mirador, en blanco y negro'],
+    ['foto1', 'Idoia y Alejandro charlando en una plaza de Valencia'], ['foto16', 'Idoia y Alejandro sonriendo abrazados en una celebración, en blanco y negro'],
+    ['foto8', 'Idoia y Alejandro bailando'], ['foto14', 'Idoia y Alejandro riendo junto al mar, en blanco y negro'],
+    ['foto7', 'Idoia besando a Alejandro en la mejilla'], ['foto10', 'Idoia y Alejandro de noche, mirando juntos el móvil'],
+  ].map(([f, alt]) => ({ src: `fotos/${f}.jpg`, alt }));
+  (() => {
+    const reel = $('#reel'); if (!reel) return;
+    const n = photos.length, INTERVAL = 5000;
+    const chev = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`;
+    reel.innerHTML = `<div class="strip" id="strip">${photos.map((p, i) => `<button type="button" class="frame" data-i="${i}" aria-label="Foto ${i + 1} de ${n}"><img src="${p.src}" alt="${p.alt}" decoding="async" draggable="false"></button>`).join('')}</div>
+      <button type="button" class="reel-btn reel-prev" aria-label="Foto anterior">${chev('M15 5l-7 7 7 7')}</button>
+      <button type="button" class="reel-btn reel-next" aria-label="Foto siguiente">${chev('M9 5l7 7-7 7')}</button>
+      <div class="reel-meta"><span id="reel-count" aria-live="polite"></span><button type="button" id="reel-toggle"></button></div>
+      <div class="reel-bar" aria-hidden="true"><i id="reel-run"></i></div>`;
+    const strip = $('#strip'), frames = $$('.frame', reel), count = $('#reel-count'), toggle = $('#reel-toggle'), run = $('#reel-run');
+    let active = 0, playing = !reducedMq.matches, hovering = false, visible = true, hx = 0;
+    const stepPx = () => frames[0].offsetWidth + 26;
+
+    function layout() {
+      frames.forEach((f, i) => {
+        let off = ((i - active) % n + n) % n; if (off > n / 2) off -= n;
+        const a = Math.abs(off), act = off === 0;
+        f.style.transform = `translateX(${off * stepPx()}px) scale(${act ? 1 : .86})`;
+        f.style.opacity = a === 0 ? 1 : a === 1 ? .55 : a === 2 ? .28 : 0;
+        f.style.filter = act ? 'none' : 'grayscale(.5) brightness(.8)';
+        f.style.zIndex = 10 - a;
+        f.classList.toggle('is-active', act);
+        f.classList.toggle('is-far', a > 3);
+        f.tabIndex = act ? 0 : -1;
+        f.setAttribute('aria-hidden', act ? 'false' : 'true');
+      });
+      count.textContent = `${active + 1} / ${n}`;
+    }
+    function restartBar() {
+      run.classList.remove('run'); void run.offsetWidth;
+      if (playing) run.classList.add('run');
+      run.style.animationPlayState = (hovering || !visible || lb.classList.contains('open')) ? 'paused' : 'running';
+    }
+    function go(dir, manual = true) {
+      active = ((active + dir) % n + n) % n;
+      hx -= dir * stepPx(); strip.style.setProperty('--hx', hx + 'px');
+      layout(); restartBar();
+    }
+    function setPlaying(p) {
+      playing = p; toggle.textContent = p ? 'Pausar' : 'Reproducir';
+      toggle.setAttribute('aria-label', p ? 'Pausar el carrete automático' : 'Reproducir el carrete automático');
+      restartBar();
+    }
+    run.addEventListener('animationend', () => { if (playing) go(1, false); });
+    // Pausa mientras el cursor o el foco están sobre el carrete (sin reiniciar el contador)
+    const syncPause = () => { run.style.animationPlayState = (hovering || !visible || lb.classList.contains('open')) ? 'paused' : 'running'; };
+    reel.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { hovering = true; syncPause(); } });
+    reel.addEventListener('pointerleave', () => { hovering = false; syncPause(); });
+    $('.reel-prev', reel).addEventListener('click', () => go(-1));
+    $('.reel-next', reel).addEventListener('click', () => go(1));
+    toggle.addEventListener('click', () => setPlaying(!playing));
+    reel.tabIndex = 0;
+    reel.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); } else if (e.key === 'ArrowRight') { e.preventDefault(); go(1); } });
+    // Clic: la foto activa se amplía; las vecinas se acercan
+    frames.forEach((f, i) => f.addEventListener('click', () => {
+      if (strip.dataset.drag === '1') return;
+      if (i === active) { const im = $('img', f); lbImg.src = im.src; lbImg.alt = im.alt; lb.classList.add('open'); }
+      else { let off = ((i - active) % n + n) % n; if (off > n / 2) off -= n; go(off < 0 ? -1 : 1); }
+    }));
+    // Deslizar con el dedo o el ratón
+    let sx = null;
+    strip.addEventListener('pointerdown', e => { sx = e.clientX; strip.dataset.drag = '0'; });
+    strip.addEventListener('pointermove', e => { if (sx !== null && Math.abs(e.clientX - sx) > 8) strip.dataset.drag = '1'; });
+    const end = e => { if (sx === null) return; const dx = e.clientX - sx; sx = null; if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1); setTimeout(() => { strip.dataset.drag = '0'; }, 0); };
+    strip.addEventListener('pointerup', end); strip.addEventListener('pointercancel', () => { sx = null; });
+    if ('IntersectionObserver' in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; syncPause(); }, { threshold: .3 }).observe(reel);
+    addEventListener('resize', layout);
+    layout(); setPlaying(playing);
+  })();
 
   /* RSVP */
   // Pega aquí la URL de la app web de Google Apps Script (ver boda/apps-script.gs).
