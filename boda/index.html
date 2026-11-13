@@ -762,7 +762,7 @@
 
   /* RSVP */
   // Pega aquí la URL de la app web de Google Apps Script (ver boda/apps-script.gs).
-  const RSVP_ENDPOINT = '';
+  const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbza46QzJtBF3x43P91A3NrX1XptpUVKOnAF9aDmqxEuKoTruy9-M5JJe5hmV46LlMHaeg/exec';
   const choice = { asiste: 'si', bus: 'no' };
   const syncBus = () => { $('#vuelta-wrap').style.display = choice.bus === 'si' ? 'block' : 'none'; };
   [['#asiste', 'asiste'], ['#bus', 'bus']].forEach(([sel, key]) => $$(sel + ' button').forEach(b => b.addEventListener('click', () => {
