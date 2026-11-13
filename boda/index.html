@@ -134,7 +134,7 @@
 
   /* FOTOS · CARRETE */
   #fotos { overflow-x: clip; }
-  .reel { --fw: min(300px, 62vw); --fh: calc(var(--fw) * 4 / 3); --step: calc(var(--fw) + 26px); position: relative; margin: 0 calc(50% - 50vw); outline-offset: -4px; }
+  .reel { isolation: isolate; --fw: min(300px, 62vw); --fh: calc(var(--fw) * 4 / 3); --step: calc(var(--fw) + 26px); position: relative; margin: 0 calc(50% - 50vw); outline-offset: -4px; }
   .strip { position: relative; height: calc(var(--fh) + 96px); background: #2b2a27; overflow: hidden; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
   .strip::before, .strip::after { content: ''; position: absolute; left: 0; right: 0; height: 14px; z-index: 1; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='14'%3E%3Crect x='6' y='1' width='18' height='12' rx='3' fill='%23faf7f2'/%3E%3C/svg%3E"); background-repeat: repeat-x; background-position-x: var(--hx, 0px); transition: background-position-x .8s cubic-bezier(.45,.05,.2,1); }
   .strip::before { top: 16px; }
@@ -143,11 +143,12 @@
   .frame img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; -webkit-user-drag: none; }
   .frame.is-active { cursor: zoom-in; }
   .frame.is-far { visibility: hidden; transition: none; }
-  .reel-btn { position: absolute; top: calc((var(--fh) + 96px) / 2); transform: translateY(-50%); z-index: 5; width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,.5); background: rgba(250,247,242,.92); color: var(--ink); cursor: pointer; display: grid; place-items: center; transition: background .2s, transform .2s; }
-  .reel-btn:hover { background: #fff; transform: translateY(-50%) scale(1.06); }
-  .reel-btn svg { width: 18px; height: 18px; }
-  .reel-prev { left: max(.8rem, calc(50% - var(--fw) / 2 - 3.6rem)); }
-  .reel-next { right: max(.8rem, calc(50% - var(--fw) / 2 - 3.6rem)); }
+  .reel-btn { position: absolute; top: calc((var(--fh) + 96px) / 2); transform: translate(-50%, -50%); z-index: 5; width: 44px; height: 44px; padding: 0; border: 0; background: none; color: #fff; opacity: .85; cursor: pointer; display: grid; place-items: center; filter: drop-shadow(0 1px 3px rgba(0,0,0,.5)); transition: opacity .2s, transform .2s; }
+  .reel-btn:hover { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+  .reel-btn svg { width: 30px; height: 30px; stroke-width: 2.8; }
+  /* centradas en el hueco entre la foto activa y la vecina (escalada a .86) */
+  .reel-prev { left: calc(50% - var(--fw) * .535 - 13px); }
+  .reel-next { left: calc(50% + var(--fw) * .535 + 13px); right: auto; }
   .reel-meta { display: flex; align-items: center; justify-content: center; gap: 1.4rem; margin-top: 1.2rem; font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
   .reel-meta button { background: none; border: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--accent-dark); cursor: pointer; border-bottom: 1px solid var(--accent); padding: 0 0 2px; }
   .reel-bar { height: 2px; background: var(--line); margin: .9rem auto 0; width: min(300px, 70vw); overflow: hidden; }
