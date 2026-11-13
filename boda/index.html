@@ -417,17 +417,34 @@
   const boy = (x, y, s = 1, c = '#7d8f66', kneel = false) => { const l = kneel ? 12 : 30; return `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-9" y="${-l}" width="18" height="${l}" rx="3" fill="#44505f"/><rect x="-13" y="${-l - 32}" width="26" height="36" rx="9" fill="${c}"/><circle cy="${-l - 44}" r="12" fill="${skin}"/><g fill="#33251f"><circle cx="-8" cy="${-l - 52}" r="7"/><circle cx="0" cy="${-l - 55}" r="8"/><circle cx="8" cy="${-l - 52}" r="7"/><circle cx="-11" cy="${-l - 46}" r="5"/><circle cx="11" cy="${-l - 46}" r="5"/></g></g>`; };
   const girl = (x, y, s = 1, c = '#c98b6b') => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-14 -76 Q-19 -40 -11 -32 L11 -32 Q19 -40 14 -76Z" fill="#6a4a36"/><rect x="-7" y="-22" width="5" height="22" fill="${skin}"/><rect x="2" y="-22" width="5" height="22" fill="${skin}"/><path d="M-11 -62 L11 -62 L19 -20 L-19 -20Z" fill="${c}"/><circle cy="-72" r="12" fill="${skin}"/><path d="M-13 -74 A13 13 0 0 1 13 -74 Q2 -84 -13 -74Z" fill="#6a4a36"/></g>`;
   const grad = (id, a, b) => `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="400" height="440" fill="url(#${id})"/>`;
+  const palm = (x, y, h, w = 6, r = 1) => { const tx = x + h * .04, ty = y - h; return `<path d="M${x} ${y} Q${x + h * .1} ${y - h / 2} ${tx} ${ty}" stroke="#8b6b4a" stroke-width="${w}" fill="none"/><g transform="translate(${tx} ${ty}) scale(${r})"><g fill="#4f8a43"><ellipse cx="-28" rx="32" ry="6" transform="rotate(28)"/><ellipse cx="28" rx="32" ry="6" transform="rotate(-28)"/></g><g fill="#68a34f"><ellipse cx="-28" rx="32" ry="6" transform="rotate(-12)"/><ellipse cx="28" rx="32" ry="6" transform="rotate(12)"/><ellipse cx="-20" rx="26" ry="5" transform="rotate(-48)"/><ellipse cx="20" rx="26" ry="5" transform="rotate(48)"/></g></g>`; };
   const stars = (n, maxY, col = '#fff') => Array.from({ length: n }, (_, i) => `<circle cx="${(i * 97 + 31) % 400}" cy="${(i * 53 + 17) % maxY}" r="${i % 3 ? 1.2 : 2}" fill="${col}" opacity="${i % 2 ? .6 : .9}"/>`).join('');
 
   const scenes = [
     // 1 · Castelldefels
-    () => grad('s1', '#cfe3ee', '#fbeed8') +
-      '<circle cx="310" cy="90" r="52" fill="#f6d98f" opacity=".25"/><circle cx="310" cy="90" r="34" fill="#f6d98f"/>' +
-      '<g fill="#fff" opacity=".85"><ellipse cx="90" cy="80" rx="40" ry="12"/><ellipse cx="120" cy="70" rx="26" ry="12"/></g>' +
-      '<rect y="230" width="400" height="75" fill="#9ec3d3"/><path d="M0 252 Q50 242 100 252 T200 252 T300 252 T400 252" stroke="#fff" stroke-width="2" fill="none" opacity=".6"/>' +
-      '<rect y="300" width="400" height="140" fill="#ecd9b8"/><rect y="300" width="400" height="9" fill="#d9c3a0"/>' +
-      '<path d="M55 335 Q68 275 80 215" stroke="#8b6b4a" stroke-width="7" fill="none"/><g fill="#6f8a5a"><ellipse cx="80" cy="214" rx="34" ry="8" transform="rotate(-25 80 214)"/><ellipse cx="80" cy="214" rx="34" ry="8" transform="rotate(25 80 214)"/><ellipse cx="80" cy="214" rx="30" ry="8" transform="rotate(-62 80 214)"/><ellipse cx="80" cy="214" rx="30" ry="8" transform="rotate(62 80 214)"/></g>' +
-      '<path d="M135 395 Q200 412 265 395" stroke="#c98b6b" stroke-dasharray="3 7" stroke-width="2" fill="none"/>' + boy(115, 392, 1.1) + girl(285, 392, 1.1),
+    () => grad('s1', '#9fcdea', '#e9f3f6') +
+      '<g fill="#fff" opacity=".95"><ellipse cx="60" cy="205" rx="62" ry="22"/><ellipse cx="100" cy="190" rx="40" ry="20"/><ellipse cx="30" cy="212" rx="34" ry="14"/></g><g fill="#fff" opacity=".9"><ellipse cx="205" cy="105" rx="46" ry="14"/><ellipse cx="235" cy="92" rx="30" ry="13"/><ellipse cx="40" cy="70" rx="26" ry="7"/></g>' +
+      // edificios de la derecha
+      '<rect x="290" y="236" width="110" height="78" fill="#f1e4c8"/><rect x="290" y="236" width="18" height="78" fill="#e0cfaa"/><path d="M284 238 L400 230 V242 L284 250Z" fill="#c98b6b"/><g fill="#b59f80" opacity=".8"><rect x="316" y="258" width="7" height="12"/><rect x="334" y="258" width="7" height="12"/><rect x="352" y="258" width="7" height="12"/><rect x="316" y="284" width="7" height="12"/><rect x="334" y="284" width="7" height="12"/><rect x="352" y="284" width="7" height="12"/></g>' +
+      // iglesia con campanario
+      '<rect x="138" y="236" width="82" height="70" fill="#efe2c4"/><rect x="138" y="236" width="14" height="70" fill="#e0cfaa"/><path d="M134 238 L179 214 L224 238Z" fill="#dcc9a0"/><rect x="170" y="190" width="14" height="22" fill="#e8cf8f"/><path d="M177 168 L172 190 H182Z" fill="#8b6b4a"/>' +
+      '<rect x="105" y="188" width="36" height="118" fill="#e8cf8f"/><rect x="105" y="188" width="10" height="118" fill="#d6bb78"/><rect x="102" y="184" width="42" height="7" fill="#d6bb78"/><path d="M110 184 Q123 160 136 184Z" fill="#d6bb78"/><rect x="122" y="150" width="3" height="14" fill="#8b6b4a"/><path d="M116 224 V208 Q123 200 130 208 V224Z" fill="#7a6a4a"/>' +
+      '<g fill="#7a6a4a"><path d="M158 296 V276 Q166 268 174 276 V296Z"/></g>' +
+      // arbustos y playa
+      '<rect y="296" width="400" height="22" fill="#5f9a4a"/><g fill="#4f8a43"><circle cx="30" cy="298" r="14"/><circle cx="190" cy="300" r="16"/><circle cx="250" cy="298" r="15"/><circle cx="280" cy="302" r="12"/></g>' +
+      // palmeras del fondo
+      palm(26, 308, 62, 3, .55) + palm(66, 306, 66, 3, .6) + palm(98, 308, 62, 3, .55) + palm(160, 306, 70, 3, .6) + palm(212, 304, 80, 3, .65) +
+      // paseo
+      '<rect y="318" width="400" height="122" fill="#9aa3ad"/><path d="M0 318 H400 V328 H0Z" fill="#aab2bb"/>' +
+      '<g stroke="#8a929c" stroke-width="1.5" opacity=".7"><path d="M0 360 H400 M0 392 H400 M0 424 H400 M250 318 L230 440 M330 318 L350 440"/></g>' +
+      // playa a la izquierda
+      '<path d="M0 316 H140 L214 342 L0 410Z" fill="#f2dca4"/><path d="M0 410 L214 342" stroke="#fff" stroke-width="3" opacity=".8"/><g fill="#e3c98a" opacity=".8"><ellipse cx="40" cy="372" rx="22" ry="3"/><ellipse cx="96" cy="346" rx="18" ry="2.5"/><ellipse cx="60" cy="338" rx="14" ry="2"/></g>' +
+      '<path d="M46 372 V326" stroke="#8b6b4a" stroke-width="3"/><path d="M20 332 Q46 306 72 332Z" fill="#c98b6b"/><path d="M33 326 Q46 308 46 308 Q46 308 59 326 Q46 332 33 326Z" fill="#fdf3dc" opacity=".85"/><ellipse cx="92" cy="360" rx="16" ry="4" fill="#9ec3d3"/>' +
+      // palmeras grandes y farola
+      palm(290, 330, 150, 6, 1.15) + palm(258, 326, 118, 5, 1) +
+      '<rect x="326" y="226" width="5" height="112" fill="#7d838c"/><rect x="322" y="222" width="14" height="6" rx="2" fill="#7d838c"/>' +
+      palm(366, 352, 270, 11, 1.7) +
+      '<path d="M135 400 Q200 416 265 400" stroke="#c98b6b" stroke-dasharray="3 7" stroke-width="2" fill="none"/>' + boy(115, 396, 1.1) + girl(240, 396, 1.1),
     // 2 · El banquito
     () => grad('s2', '#f6c89f', '#b98aa0') +
       '<circle cx="200" cy="255" r="64" fill="#fbe3a6"/><circle cx="200" cy="255" r="90" fill="#fbe3a6" opacity=".2"/>' +
