@@ -191,6 +191,7 @@
   .thanks { text-align: center; padding: 2rem 0; display: none; }
   .thanks h3 { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: 2.6rem; color: var(--accent); }
   .thanks p { color: var(--muted); }
+  .thanks-img { display: block; width: min(280px, 80%); aspect-ratio: 3/4; object-fit: cover; margin: 1.6rem auto 0; border: 8px solid #fff; box-shadow: 0 8px 22px rgba(0,0,0,.18); transform: rotate(-2deg); }
 
   /* CONTACTO */
   .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; text-align: center; }
@@ -350,6 +351,7 @@
         <div class="thanks" id="thanks">
           <h3>Gracias, <span id="thanks-name"></span></h3>
           <p id="thanks-msg"></p>
+          <img class="thanks-img" src="fotos/pies.jpg" alt="Una foto de unos pies, como agradecimiento" loading="lazy">
         </div>
       </div>
     </div>
