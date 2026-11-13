@@ -591,14 +591,25 @@
       boy(168, 400, 1.15, '#8aa0b5', true) + girl(262, 400, 1.15, '#c98b6b') +
       '<circle cx="196" cy="346" r="6" fill="none" stroke="#e5c27a" stroke-width="2.5"/><path d="M193 338l3-4 3 4-3 3z" fill="#fff"/>',
     // 8 · El gran día
-    () => grad('s8', '#f6e6cf', '#fff7ea') +
-      '<circle cx="330" cy="90" r="46" fill="#f6d98f" opacity=".3"/><circle cx="330" cy="90" r="28" fill="#f6d98f"/>' +
-      '<path d="M0 330 Q100 290 200 320 T400 300 V440H0Z" fill="#b9c79c"/><rect y="360" width="400" height="80" fill="#a7b887"/>' +
-      '<g fill="#4f6342"><ellipse cx="40" cy="270" rx="16" ry="62"/><ellipse cx="72" cy="290" rx="12" ry="46"/><ellipse cx="362" cy="270" rx="16" ry="62"/><ellipse cx="330" cy="292" rx="12" ry="44"/></g>' +
-      '<path d="M0 40 Q100 90 200 50 T400 60" stroke="#8d8a7a" fill="none"/>' + Array.from({ length: 10 }, (_, i) => `<circle cx="${20 + i * 40}" cy="${[48, 62, 74, 78, 66, 52, 56, 68, 70, 62][i]}" r="4" fill="#fbe3a6"/>`).join('') +
-      '<path d="M122 400 V222 A78 78 0 0 1 278 222 V400" stroke="#6f8a5a" stroke-width="12" fill="none" stroke-linecap="round"/>' +
-      (() => { const c = ['#f0b8a8', '#fffdf9', '#e5c27a', '#c98b6b']; let o = ''; for (let i = 0; i < 26; i++) { const t = i / 25; let x, y; if (t < .3) { x = 122; y = 400 - (t / .3) * 178; } else if (t < .7) { const a = Math.PI - ((t - .3) / .4) * Math.PI; x = 200 + 78 * Math.cos(a); y = 222 - 78 * Math.sin(a); } else { x = 278; y = 222 + ((t - .7) / .3) * 178; } o += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${i % 2 ? 6 : 8}" fill="${c[i % 4]}"/>`; } return o; })() +
-      boy(180, 405, 1.15, '#7d8f66') + girl(222, 405, 1.15, '#c98b6b')
+    () => grad('s8', '#e6edf2', '#fdf8ee') +
+      // colinas lejanas y humo blanco
+      '<path d="M0 168 Q60 150 120 160 T240 156 T400 150 V230H0Z" fill="#7b8a69"/><path d="M0 190 Q80 172 160 184 T320 176 T400 182 V240H0Z" fill="#6a7b5a"/>' +
+      '<g fill="#fff" opacity=".95"><ellipse cx="40" cy="195" rx="70" ry="48"/><ellipse cx="110" cy="215" rx="60" ry="36"/><ellipse cx="200" cy="190" rx="48" ry="40"/><ellipse cx="240" cy="225" rx="62" ry="30"/><ellipse cx="320" cy="215" rx="56" ry="34"/><ellipse cx="385" cy="200" rx="40" ry="38"/></g><g fill="#fff" opacity=".7"><ellipse cx="170" cy="150" rx="40" ry="24"/><ellipse cx="60" cy="150" rx="34" ry="22"/></g>' +
+      // césped, grava y camino
+      '<rect y="232" width="400" height="208" fill="#a9bd84"/><rect y="340" width="400" height="38" fill="#d9d2c2"/><path d="M140 372 H262 L318 440 H92Z" fill="#f4ede2"/><path d="M92 440 L140 372 M318 440 L262 372" stroke="#c9b595" stroke-width="2" opacity=".6"/>' +
+      '<path d="M0 392 Q30 380 70 392 L60 440 H0Z" fill="#92a96f"/><path d="M400 388 Q370 380 336 392 L346 440 H400Z" fill="#92a96f"/>' +
+      // setos
+      '<g fill="#4a6640"><ellipse cx="22" cy="318" rx="34" ry="64"/><ellipse cx="72" cy="290" rx="28" ry="54"/><ellipse cx="338" cy="294" rx="28" ry="52"/><ellipse cx="384" cy="318" rx="34" ry="58"/></g><g fill="#5f7d50" opacity=".8"><ellipse cx="14" cy="300" rx="14" ry="32"/><ellipse cx="66" cy="272" rx="11" ry="26"/><ellipse cx="332" cy="276" rx="11" ry="26"/><ellipse cx="376" cy="300" rx="14" ry="28"/></g>' +
+      // columnas de flores
+      (() => { const c = ['#f0b8a8', '#fffdf9', '#e5a27a', '#c98b6b', '#f4cfa0', '#fffdf9']; const g = ['#5f7d50', '#6f8a5a', '#4a6640']; const col = (x, lean) => { let o = ''; for (let i = 0; i < 70; i++) { const t = i / 69; const cy = 382 - t * 292; const cx = x + lean * (t - .5) + Math.sin(i * 2.1) * 9; const r = 7 + ((i * 5) % 4) * (1 - t * .3); o += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(r + 2).toFixed(1)}" fill="${g[i % 3]}"/>`; } for (let i = 0; i < 80; i++) { const t = i / 79; const cy = 382 - t * 290 + Math.cos(i * 1.7) * 6; const cx = x + lean * (t - .5) + Math.sin(i * 3.3) * 12; o += `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(3.5 + (i % 3) * 1.3).toFixed(1)}" fill="${c[(i * 7) % 6]}"/>`; } return o; }; return col(112, 10) + col(290, -10); })() +
+      // la pareja de frente
+      '<ellipse cx="202" cy="408" rx="58" ry="7" fill="#000" opacity=".12"/>' +
+      '<path d="M236 392 Q290 394 338 410 Q300 424 244 412Z" fill="#fdfaf4"/><path d="M246 398 Q290 406 326 412" stroke="#e8dfd0" stroke-width="2" fill="none"/>' +
+      boy(178, 406, 1.2, '#1f1f25') +
+      '<g transform="translate(178 406) scale(1.2)"><rect x="-9" y="-26" width="18" height="26" fill="#26262c"/><path d="M-6 -62 H6 L0 -43Z" fill="#fdfaf4"/><path d="M-2.2 -61 H2.2 L1.6 -52 L0 -47 L-1.6 -52Z" fill="#7a2e3a"/><path d="M-7 -62 L-6 -62 L0 -43 L0 -38 Z M7 -62 L6 -62 L0 -43 L0 -38 Z" fill="#0d0d10"/><path d="M-6 -62 L-3 -56 L-8 -53Z M6 -62 L3 -56 L8 -53Z" fill="#0d0d10"/></g>' +
+      girl(226, 406, 1.2, '#fdfaf4') +
+      '<path d="M193 352 L208 354" stroke="#f0cfae" stroke-width="5" stroke-linecap="round"/>' +
+      '<g><path d="M243 350 L248 340" stroke="#6f8a5a" stroke-width="3"/><circle cx="244" cy="357" r="10" fill="#f0b8a8"/><circle cx="251" cy="361" r="8" fill="#e5a27a"/><circle cx="237" cy="361" r="7" fill="#fffdf9"/><circle cx="246" cy="367" r="6" fill="#c98b6b"/></g>'
   ];
 
   const stories = [
@@ -609,7 +620,7 @@
     { date: 'Verano 2023', title: 'Se acaba la distancia', text: 'Tras casi 8 años entre Múnich, Barcelona, Valencia, París y Chicago, Idoia se mudó a Valencia. El primer año, en pisos distintos.', alt: 'La pareja en la plaza de la Virgen de Valencia, con el Miguelete y la catedral al fondo' },
     { date: 'Junio 2024', title: 'Nuestro hogar', text: 'Conseguimos nuestro primer pisito y construimos nuestro hogar juntos. Empezaron los mejores años de nuestra relación: todo con lo que habíamos soñado estaba ocurriendo.', alt: 'En la terraza de su ático, Alejandro hace la paella mientras Idoia espera sentada a la mesa' },
     { date: 'Antes de Torino', title: 'La pedida', text: 'En plena mudanza a Italia, nos escapamos un par de días a la montaña. Alejandro preparó una gincana con 9 cartas, una por cada etapa de nuestra historia, y en la última, a la luz de la luna y las estrellas, se arrodilló. Idoia dijo que sí.', alt: 'Alejandro arrodillado con el anillo bajo la luna y las estrellas', photo: ['fotos/foto6.jpg', 'Idoia y Alejandro el día de la pedida, enseñando el anillo'] },
-    { date: '10 julio 2027', title: 'El gran día', text: 'Y ahora queremos celebrarlo contigo. Gracias por ser parte de nuestra historia.', alt: 'La pareja bajo un arco de flores en una finca al atardecer' },
+    { date: '10 julio 2027', title: 'El gran día', text: 'Y ahora queremos celebrarlo contigo. Gracias por ser parte de nuestra historia.', alt: 'La pareja de frente, cogida de la mano entre dos columnas de flores, con humo blanco y setos de jardín al fondo' },
   ];
 
   const art = (i) => `<div class="art"><svg viewBox="0 0 400 440" preserveAspectRatio="xMidYMax slice" role="img" aria-label="${stories[i].alt}">${scenes[i]()}</svg>${stories[i].photo ? `<div class="polaroid"><img src="${stories[i].photo[0]}" alt="${stories[i].photo[1]}" loading="lazy"></div>` : ''}</div>`;
